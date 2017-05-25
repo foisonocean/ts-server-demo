@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "yarn watch",
+    "start": "yarn build && yarn watch",
     "watch": "concurrently -k -p \"【 {name} 】 \" -n \"TS-Compiler,Node\" -c \"cyan.bold,green.bold\" \"yarn watch:ts\" \"yarn watch:node\"",
     "watch:ts": "tsc -w",
     "watch:node": "nodemon dist/server.js",
