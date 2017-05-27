@@ -4,14 +4,19 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn build && yarn watch",
-    "watch": "concurrently -k -p \"【 {name} 】 \" -n \"TS-Compiler,Node\" -c \"cyan.bold,green.bold\" \"yarn watch:ts\" \"yarn watch:node\"",
+    "watch": "concurrently -k -p \"【 {name} 】 \" -n \"TS-Compiler,Node,GraphQL-Schema\" -c \"cyan.bold,green.bold,yello.bold\" \"yarn watch:ts\" \"yarn watch:node\" \"yarn watch:graphql-schema\"",
     "watch:ts": "tsc -w",
+    "watch:graphql-schema": "cpx \"src/schemas/**/*.gql\" \"dist/schemas\" --watch",
     "watch:node": "nodemon dist/server.js",
-    "build": "tsc"
+    "build": "yarn build:ts && yarn build:graphql-schema",
+    "build:ts": "tsc",
+    "build:graphql-schema": "cpx \"src/schemas/**/*.gql\" \"dist/schemas\""
   },
   "devDependencies": {
+    "@playlyfe/gql": "^2.3.0",
     "casual": "^1.5.12",
     "concurrently": "^3.4.0",
+    "cpx": "^1.5.0",
     "nodemon": "^1.11.0",
     "tslint": "^5.3.2",
     "typescript": "^2.3.3"
@@ -25,6 +30,8 @@
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "graphql-server-express": "^0.7.2",
+    "graphql-tools": "^0.11.0",
     "mongoose": "^4.10.2"
   }
 }

@@ -1,0 +1,13 @@
+type Query {
+  person(id: Int, name: String): Person
+  lovers(id: Int): [Person]
+}
+
+type Person {
+  id: Int
+  name: String
+  age: Int
+  phone: String
+  hobby: String
+  lover: Person
+}
